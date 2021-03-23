@@ -23,6 +23,8 @@ public class Campus {
     protected Campus(){
 
     }
+
+
     public Long getId() {
         return id;
     }

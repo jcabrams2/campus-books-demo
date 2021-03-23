@@ -13,6 +13,14 @@ public class CampusStorage {
         this.campusRepo = campusRepo;
     }
 
+    public Campus retrieveCampusById(Long id){
+        return campusRepo.findById(id).get();
+    }
+
+    public void deleteCampusById(Long id){
+        campusRepo.deleteById(id);
+    }
+
     public void saveCampus(Campus campusToSave){
         campusRepo.save(campusToSave);
     }

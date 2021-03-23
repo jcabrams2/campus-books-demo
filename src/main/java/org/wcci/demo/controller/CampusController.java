@@ -1,7 +1,6 @@
 package org.wcci.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.wcci.demo.resources.Campus;
 import org.wcci.demo.service.CampusStorage;
 
@@ -16,6 +15,22 @@ public class CampusController {
 
     @GetMapping("/api/campuses")
     public Iterable<Campus> retrieveAllCampuses(){
+        return campusStorage.retrieveAllCampuses();
+    }
+
+    @GetMapping("/api/campuses/{id}")
+    public Campus retrieveCampusById(@PathVariable Long id){
+        return campusStorage.retrieveCampusById(id);
+    }
+
+    @DeleteMapping("/api/campuses/{id}")
+    public void deleteCampusById(@PathVariable Long id){
+        campusStorage.deleteCampusById(id);
+    }
+
+    @PostMapping("/api/campuses")
+    public Iterable<Campus> addCampus(@RequestBody Campus campusToAdd){
+        campusStorage.saveCampus(campusToAdd);
         return campusStorage.retrieveAllCampuses();
     }
 }
