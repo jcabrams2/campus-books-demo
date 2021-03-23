@@ -12,3 +12,15 @@ POST localhost:8080/api/campuses
 Content-Type: application/json
 
 {"location": "online", "techStack": "Java"}
+
+### Update's a campus values
+PUT localhost:8080/api/campuses
+Content-Type: application/json
+
+{"id":"1", "location":"Florida", "techStack":"C#"}
+
+### Updates specific element of our JSON
+PATCH localhost:8080/api/campuses/1/location
+
+Utah
+

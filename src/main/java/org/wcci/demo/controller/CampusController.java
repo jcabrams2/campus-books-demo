@@ -33,4 +33,20 @@ public class CampusController {
         campusStorage.saveCampus(campusToAdd);
         return campusStorage.retrieveAllCampuses();
     }
+
+    @PutMapping("/api/campuses")
+    public Iterable<Campus> editCampus(@RequestBody Campus campusToEdit){
+        if(campusToEdit.getId()!=null){
+            campusStorage.saveCampus(campusToEdit);
+        }
+        return campusStorage.retrieveAllCampuses();
+    }
+
+    @PatchMapping("/api/campuses/{id}/location")
+    public Campus changeCampusLocation(@RequestBody String newLocation, @PathVariable Long id){
+        Campus campusToChange = campusStorage.retrieveCampusById(id);
+        campusToChange.changeLocation(newLocation);
+        campusStorage.saveCampus(campusToChange);
+        return campusToChange;
+    }
 }
