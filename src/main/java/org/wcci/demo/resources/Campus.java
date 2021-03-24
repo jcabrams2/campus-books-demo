@@ -3,6 +3,9 @@ package org.wcci.demo.resources;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Campus {
@@ -12,7 +15,8 @@ public class Campus {
     private Long id;
     private String location;
     private String techStack;
-
+    @OneToMany(mappedBy = "campus")
+    private List<Book> books;
 
 
     public Campus(String location, String techStack){
@@ -39,5 +43,24 @@ public class Campus {
 
     public void changeLocation(String newLocation){
         location = newLocation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campus campus = (Campus) o;
+        return Objects.equals(location, campus.location) &&
+                Objects.equals(techStack, campus.techStack) &&
+                Objects.equals(id, campus.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(location, techStack, id);
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 }
